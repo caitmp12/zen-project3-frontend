@@ -17,7 +17,6 @@ code {
   margin: auto;
   padding: 0;
   max-width: 450px;
-  max-height: 700px;
 }
 
 body {
@@ -29,7 +28,7 @@ h1 {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   width: 100%;
   background-color: gray;
-  padding: 10px 0;
+  padding: .75em 0;
 }
 
 .home {
@@ -58,5 +57,11 @@ h1 {
   text-align: center;
   display: flex;
   padding: .75em 0;
+  background: gray;
+  margin: .75em 0 0 0;
+}
+
+.nav a {
+  color: #000;
 }
 
