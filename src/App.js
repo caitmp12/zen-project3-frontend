@@ -4,6 +4,7 @@ import './App.css';
 import { Route, Link, Switch } from "react-router-dom"
 import Home from "./components/Home"
 import Nav from "./components/Nav"
+import Favorites from "./components/Favorites"
 
 function App() {
   return (
@@ -13,13 +14,13 @@ function App() {
       </header>
       <main>
         {/* <Switch> */}
-          <Home />
-          {/* Favorite Index */}
-          {/* Movie Index */}
-          {/* Drink Index */}
+          {/* <Home /> */}
+          <Favorites />
+          {/* Movie Index - Josh */}
+          {/* Drink Index - Caitlin */}
           {/* Treat Index */}
-          {/* Movie Show */}
-          {/* Drink Show */}
+          {/* Movie Show - Caitlin */}
+          {/* Drink Show - Josh */}
           {/* Treat Show */}
           {/* New Drink Form */}
           {/* New Treat Form */}
