@@ -9,6 +9,7 @@ const Nav = () => {
             <a href="#"><ion-icon name="wine-outline"></ion-icon></a>
             <a href="#"><ion-icon name="pizza-outline"></ion-icon></a>
             <a href="#"><ion-icon name="star-outline"></ion-icon></a>
+            <a href="#"><ion-icon name="people-outline"></ion-icon></a>
         </div>
     )
 }
