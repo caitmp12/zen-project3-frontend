@@ -2,6 +2,7 @@ import React from "react"
 // import logo from './logo.svg';
 import './App.css';
 import { Route, Link, Switch } from "react-router-dom"
+import Home from "./components/Home"
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       </header>
       <main>
         {/* <Switch> */}
-          {/* Home */}
+          <Home />
           {/* Favorite Index */}
           {/* Movie Index */}
           {/* Drink Index */}

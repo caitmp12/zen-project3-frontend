@@ -11,3 +11,45 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
+
+* {
+  font-size: 36px;
+  margin: auto;
+  padding: 0;
+  max-width: 450px;
+  max-height: 700px;
+}
+
+body {
+  border: #000 solid 1px;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+  background-color: gray;
+  padding: 10px 0;
+}
+
+.home {
+  text-align: center;
+}
+
+.randomizer {
+  border-radius: 50px;
+  padding: .5em;
+  margin: 1em 1em;
+}
+
+.results {
+  max-width: 80%;
+  margin: auto;
+  padding: 1em 0;
+  background-color: antiquewhite;
+}
+
+.results a {
+  display: block;
+  margin: .5em;
+}
