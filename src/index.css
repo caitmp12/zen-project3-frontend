@@ -53,3 +53,10 @@ h1 {
   display: block;
   margin: .5em;
 }
+
+.nav {
+  text-align: center;
+  display: flex;
+  padding: .75em 0;
+}
+

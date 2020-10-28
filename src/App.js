@@ -3,6 +3,7 @@ import React from "react"
 import './App.css';
 import { Route, Link, Switch } from "react-router-dom"
 import Home from "./components/Home"
+import Nav from "./components/Nav"
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
           {/* Edit Treat Form */}
         {/* </Switch> */}
       </main>
-      {/* <Nav /> */}
+      <Nav />
     </div>
   );
 }
