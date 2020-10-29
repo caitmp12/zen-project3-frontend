@@ -10,6 +10,7 @@ import Favorites from "./components/Favorites"
 import DrinkIndex from "./components/DrinkIndex"
 import TreatsIndex from "./components/TreatsIndex"
 import Form from "./components/Form";
+import Movies from "./components/MoviesIndex"
 ///Testing
 import Steven from "./components/stevenMovies"
 
@@ -45,7 +46,7 @@ function App() {
     }
     React.useEffect(() => {
       getDrinks()
-    }, [])
+    }, [])    
 
 //Empty Function
     const emptyItem = {
@@ -115,6 +116,11 @@ function App() {
           <Route exact path="/" render={(rp) => <Home randomList = {selectedRandomList} selectRandomList = {selectRandomList}  selectItem = {selectItem} />} />
           {/* <Favorites /> */}
           {/* <TreatsIndex treats={treats} /> */}
+
+          <Route exact path="/drinks" render={(rp) =>
+            <MoviesIndex {...rp} movies={movies} selectItem={selectItem} />
+          }
+          />
 
           <Route exact path="/drinks" render={ (rp) =>
             <DrinkIndex {...rp} drinks={drinks} selectItem = {selectItem} /> 
