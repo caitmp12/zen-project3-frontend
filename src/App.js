@@ -64,6 +64,35 @@ function App() {
       getMovies()
     }, [])
 
+
+
+  const emptyDrink = {
+    name: "",
+    img: "",
+    ingredients: [],
+    directions: ""
+  }
+
+  const [selectedDrink, setSelectedDrink] = React.useState(emptyDrink)
+
+  const getDrinks = () => {
+    fetch(`${baseURL}/drinks`)
+      .then(response => response.json())
+      .then(data => {
+        setDrinks(data)
+      })
+  }
+  React.useEffect(() => {
+    getDrinks()
+  }, [])
+
+  const selectDrink = (drink) => {
+    setSelectedDrink(drink)
+  }
+
+
+
+
 //Empty Function
     const emptyItem = {
       name: "",
