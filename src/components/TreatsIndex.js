@@ -14,7 +14,11 @@ const TreatsIndex = (props) => {
                     {treats.map((treat) => (
                         <>
                             <img src={treat.img} />
-                            <p>{treat.name}</p>
+                            <p>
+                                onClick={() => {
+                                    props.selectItem(treat)
+                                    props.history.push(`/treats/${treat._id}`)
+                                }}{treat.name}</p>
                         </>
                     ))}
                 </div>
@@ -24,3 +28,4 @@ const TreatsIndex = (props) => {
 }
 
 export default TreatsIndex
+

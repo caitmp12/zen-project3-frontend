@@ -7,6 +7,7 @@ import Nav from "./components/Nav"
 import Favorites from "./components/Favorites"
 import DrinkIndex from "./components/DrinkIndex"
 import TreatsIndex from "./components/TreatsIndex"
+import Show from "./components/Show"
 
 
 function App() {

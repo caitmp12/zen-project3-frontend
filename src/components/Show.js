@@ -5,6 +5,8 @@ const Show = (props) => {
 
     const { item } = props
 
+    console.log(item)
+
     return (
         <div>
             <div className="index-container">
