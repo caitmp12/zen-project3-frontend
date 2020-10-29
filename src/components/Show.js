@@ -1,28 +1,36 @@
-import React from "react"
-import { Route, Link, Switch } from "react-router-dom"
+import React from "react";
+import { Route, Link, Switch } from "react-router-dom";
 
 const Show = (props) => {
+  const { item, type } = props;
 
-    const { item } = props
+  console.log(item);
 
-    console.log(item)
+  return (
+    <div>
+      <div className="index-container">
+        <div className="show-flex">
+          <img src={item.img} />
+          <h2>{item.name}</h2>
+          <ul>
+            {item.ingredients.map((ingredient) => (
+              <li>{ingredient}</li>
+            ))}
+          </ul>
 
-    return (
-        <div>
-            <div className="index-container">
-                <div className="show-flex">
-                    <img src={item.img} />
-                    <h2>{item.name}</h2>
-                    <ul>
-                    {item.ingredients.map((ingredient) => (
-                            <li>{ingredient}</li>
-                    ))}                            
-                    </ul>  
-                    <p></p>
-                </div>
-            </div>
+          <button
+            onClick={() => {
+              props.selectItem(item);
+              props.history.push(`/edit/${type}s`);
+            }}
+          >
+            Edit
+          </button>
+          <p></p>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
-export default Show
+export default Show;
