@@ -14,11 +14,11 @@ const TreatsIndex = (props) => {
                     {treats.map((treat) => (
                         <>
                             <img src={treat.img} />
-                            <p>
+                            <p
                                 onClick={() => {
                                     props.selectItem(treat)
                                     props.history.push(`/treats/${treat._id}`)
-                                }}{treat.name}</p>
+                                }}>{treat.name}</p>
                         </>
                     ))}
                 </div>
