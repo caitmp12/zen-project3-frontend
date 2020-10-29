@@ -18,10 +18,12 @@ import Steven from "./components/stevenMovies"
 
 function App() {
   const baseURL = "http://localhost:4500"; //URL used to pull data from backend
+
+
+
   //TREATS
   const [treats, setTreats] = React.useState([]); //Set treats
   //const [selectedTreat, setSelectedTreat] = React.useState
-
   
     const getTreats = () => {
       fetch(`${baseURL}/treats`)
@@ -46,7 +48,21 @@ function App() {
     }
     React.useEffect(() => {
       getDrinks()
-    }, [])    
+    }, [])   
+    
+//Movies
+    const [movies, setMovies] = React.useState([])
+    
+    const getMovies = () => {
+      fetch(`${baseURL}/drinks`)
+        .then(response => response.json())
+        .then(data => {
+          setMovies(data)
+        })
+    }
+    React.useEffect(() => {
+      getMovies()
+    }, [])
 
 //Empty Function
     const emptyItem = {
