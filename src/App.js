@@ -71,7 +71,21 @@ function App() {
     });
   };
 
+  //RANDOMIZER
 
+  const emptyRandom = {
+    //movie: {},
+    treat: {},
+    drink: {},
+  }
+
+  const [selectedRandomList, setSelectedRandomList] = React.useState(emptyRandom)
+
+  const selectRandomList = () => {
+    setSelectedRandomList({treat: treats[Math.floor(Math.random() * treats.length)],
+                          drink: drinks[Math.floor(Math.random() * drinks.length)]
+    })
+  }
   return (
     <div>
       <header>
@@ -79,7 +93,7 @@ function App() {
       </header>
       <main>
         <Switch>
-          <Route exact path="/" render={(rp) => <Home />} />
+          <Route exact path="/" render={(rp) => <Home randomList = {selectedRandomList} selectRandomList = {selectRandomList}  selectItem = {selectItem} />} />
           {/* <Favorites /> */}
           {/* <TreatsIndex treats={treats} /> */}
 
