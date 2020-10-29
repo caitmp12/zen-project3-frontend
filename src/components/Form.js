@@ -1,12 +1,14 @@
 import React from "react";
 
 const Form = (props) => {
-  const [formData, setFormData] = React.useState(props.drink);
+  const [formData, setFormData] = React.useState(props.item);
+  const { type } = props;
+  console.log(type);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.handleSubmit(formData);
-    props.history.push("/");
+    props.handleSubmit(formData, type);
+    props.history.push(`/${type}s`);
   };
 
   const handleChange = (event) => {
