@@ -17,7 +17,7 @@ const DrinkIndex = (props) => {
                     <img src={drink.img} />
                     <p
                         onClick={() => {
-                            props.selectDrink(drink)
+                            props.selectItem(drink)
                             props.history.push(`/drinks/${drink._id}`)
                         }}>{drink.name}</p>
                     </>
