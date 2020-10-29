@@ -4,6 +4,7 @@ import './App.css';
 import { Route, Link, Switch } from "react-router-dom"
 import Home from "./components/Home"
 import Nav from "./components/Nav"
+
 import Favorites from "./components/Favorites"
 import DrinkIndex from "./components/DrinkIndex"
 import TreatsIndex from "./components/TreatsIndex"
@@ -79,7 +80,6 @@ function App() {
           {/* Movie Show - Caitlin */}
           {/* Drink Show - Josh */}
           {/* Treat Show */}
-          {/* New Drink Form */}
           {/* New Treat Form */}
           {/* Edit Drink Form */}
           {/* Edit Treat Form */}

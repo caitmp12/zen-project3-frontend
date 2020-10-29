@@ -8,21 +8,22 @@ const DrinkIndex = (props) => {
     return (
         <div>
             <h2>Drinks</h2>
+            {/* search bar */}
             <label htmlFor="search"></label>
             <input type="text"></input>
+
             <div className="index-container">
-                <div className="flex">
                 {drinks.map((drink) => (
-                    <>
-                    <img src={drink.img} />
-                    <p
-                        onClick={() => {
-                            props.selectDrink(drink)
-                            props.history.push(`/drinks/${drink._id}`)
-                        }}>{drink.name}</p>
-                    </>
+                    <div className="map" onClick={() => {
+                        props.selectDrink(drink)
+                        props.history.push(`/drinks/${drink._id}`)}}>
+                            <div className="each">
+                                <img src={drink.img} />
+                                <p>{drink.name}</p>
+                            </div>
+                    </div> 
                 ))}
-                </div>
+                <div className="filling-empty-space-childs"></div>
             </div>
         </div>
     )
