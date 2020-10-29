@@ -73,8 +73,16 @@ function App() {
           {/* <TreatsIndex treats={treats} /> */}
           <Route exact path="/drinks" render={ (rp) =>
             <DrinkIndex {...rp} drinks={drinks} selectDrink = {selectDrink} /> 
-          }
+            }
           />
+          <Route exact path="/drinks/:id" render={ (rp)=>
+            <Show {...rp} item={selectDrink} />
+            } 
+          />
+          {/* <Route exact path="/treats/:id" render={ (rp)=>
+            <Show {...rp} item={selectDrink} />
+            } 
+          /> */}
           {/* Treat Index */}
           {/* Movie Show - Caitlin */}
           {/* Drink Show - Josh */}
