@@ -10,6 +10,9 @@ import Favorites from "./components/Favorites"
 import DrinkIndex from "./components/DrinkIndex"
 import TreatsIndex from "./components/TreatsIndex"
 import Form from "./components/Form";
+///Testing
+import Steven from "./components/stevenMovies"
+
 
 
 function App() {
@@ -71,6 +74,36 @@ function App() {
     });
   };
 
+  //RANDOMIZER
+
+  const emptyRandom = {
+    //movie: {},
+    treat: {},
+    drink: {},
+  }
+
+  const [selectedRandomList, setSelectedRandomList] = React.useState(emptyRandom)
+
+  const selectRandomList = () => {
+    setSelectedRandomList({treat: treats[Math.floor(Math.random() * treats.length)],
+                          drink: drinks[Math.floor(Math.random() * drinks.length)]
+    })
+  }
+
+  //API MOVIE 
+  const [searchedMovies, setSearchedMovies] = React.useState([]);
+
+  const getSearchMovies = (search, page) => {
+    fetch(`${baseURL}/movies/search/${page}/${search}`)
+      .then(response => response.json())
+      .then(data => {
+        setSearchedMovies(data)
+      })
+  }
+  React.useEffect(() => {
+    getTreats()
+  }, [])
+
 
   return (
     <div>
@@ -79,7 +112,7 @@ function App() {
       </header>
       <main>
         <Switch>
-          <Route exact path="/" render={(rp) => <Home />} />
+          <Route exact path="/" render={(rp) => <Home randomList = {selectedRandomList} selectRandomList = {selectRandomList}  selectItem = {selectItem} />} />
           {/* <Favorites /> */}
           {/* <TreatsIndex treats={treats} /> */}
 
@@ -125,6 +158,10 @@ function App() {
           {/* New Treat Form */}
           {/* Edit Drink Form */}
           {/* Edit Treat Form */}
+          <Route exact path="/movies/search" render={ (rp)=>
+            <Steven {...rp} searchedMovies={searchedMovies} />
+            } 
+          />
         </Switch>
       </main>
       <Nav />
