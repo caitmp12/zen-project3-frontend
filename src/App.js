@@ -159,7 +159,7 @@ function App() {
           {/* Edit Drink Form */}
           {/* Edit Treat Form */}
           <Route exact path="/movies/search" render={ (rp)=>
-            <stevenMovie {...rp} item={selectedItem} />
+            <Steven {...rp} searchedMovies={searchedMovies} />
             } 
           />
         </Switch>

@@ -1,14 +1,15 @@
 import React from "react";
 
-const Steven = () => {
+const Steven = (props) => {
+    const {searchedMovies} = props
   return (
     <div>
             <h2>Movies</h2>
             {/* search bar */}
             <label htmlFor="search"></label>
-            <input type="text"></input>
+            <input type="text" value ={props.inputValue} onChange={props.movieFilterOnChange}></input>
 
-            <div className="index-container">
+            {/* <div className="index-container">
                 {drinks.map((drink) => (
                     <div className="map" onClick={() => {
                         props.selectItem(drink)
@@ -20,7 +21,7 @@ const Steven = () => {
                     </div> 
                 ))}
                 <div className="filling-empty-space-childs"></div>
-            </div>
+            </div> */}
         </div>
   );
 };
