@@ -1,5 +1,6 @@
-import React from "react"
+import React from "react";
 // import logo from './logo.svg';
+
 import './App.css';
 import { Route, Link, Switch } from "react-router-dom"
 import Home from "./components/Home"
@@ -8,9 +9,15 @@ import Show from "./components/Show"
 import Favorites from "./components/Favorites"
 import DrinkIndex from "./components/DrinkIndex"
 import TreatsIndex from "./components/TreatsIndex"
+import Form from "./components/Form";
 
 
 function App() {
+  const baseURL = "http://localhost:4500"; //URL used to pull data from backend
+  //TREATS
+  const [treats, setTreats] = React.useState([]); //Set treats
+  //const [selectedTreat, setSelectedTreat] = React.useState
+
 
     const baseURL = 'http://localhost:4500' //URL used to pull data from backend
     //TREATS
@@ -56,8 +63,32 @@ function App() {
     }
   
 
+  const getDrinks = () => {
+    fetch(`${baseURL}/drinks`)
+      .then((response) => response.json())
+      .then((data) => {
+        setDrinks(data);
+      });
+  };
+  React.useEffect(() => {
+    getDrinks();
+  }, []);
 
+  const handleCreate = (newDrink) => {
+    fetch(`${baseURL}/drinks`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newDrink),
+    }).then((response) => {
+      getDrinks();
+    });
+  };
 
+  const selectDrink = (drink) => {
+    setSelectedDrink(drink);
+  };
 
   return (
     <div>
@@ -66,12 +97,10 @@ function App() {
       </header>
       <main>
         <Switch>
-          <Route exact path="/" render={(rp) =>
-            <Home />
-          }
-          />
+          <Route exact path="/" render={(rp) => <Home />} />
           {/* <Favorites /> */}
           {/* <TreatsIndex treats={treats} /> */}
+
           <Route exact path="/drinks" render={ (rp) =>
             <DrinkIndex {...rp} drinks={drinks} selectItem = {selectItem} /> 
             }
@@ -97,6 +126,20 @@ function App() {
           {/* Movie Show - Caitlin */}
           {/* Drink Show - Josh */}
           {/* Treat Show */}
+          {/* Form */}
+          <Route
+            exact
+            path="/create"
+            render={(rp) => (
+              <Form
+                {...rp}
+                label="create"
+                drink={emptyDrink}
+                handleSubmit={handleCreate}
+              />
+            )}
+          />
+          {/* New Drink Form */}
           {/* New Treat Form */}
           {/* Edit Drink Form */}
           {/* Edit Treat Form */}
