@@ -10,6 +10,9 @@ import Favorites from "./components/Favorites"
 import DrinkIndex from "./components/DrinkIndex"
 import TreatsIndex from "./components/TreatsIndex"
 import Form from "./components/Form";
+///Testing
+import Steven from "./components/stevenMovies"
+
 
 
 function App() {
@@ -86,6 +89,22 @@ function App() {
                           drink: drinks[Math.floor(Math.random() * drinks.length)]
     })
   }
+
+  //API MOVIE 
+  const [searchedMovies, setSearchedMovies] = React.useState([]);
+
+  const getSearchMovies = (search, page) => {
+    fetch(`${baseURL}/movies/search/${page}/${search}`)
+      .then(response => response.json())
+      .then(data => {
+        setSearchedMovies(data)
+      })
+  }
+  React.useEffect(() => {
+    getTreats()
+  }, [])
+
+
   return (
     <div>
       <header>
@@ -139,6 +158,10 @@ function App() {
           {/* New Treat Form */}
           {/* Edit Drink Form */}
           {/* Edit Treat Form */}
+          <Route exact path="/movies/search" render={ (rp)=>
+            <stevenMovie {...rp} item={selectedItem} />
+            } 
+          />
         </Switch>
       </main>
       <Nav />
