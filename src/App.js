@@ -18,10 +18,6 @@ function App() {
   const [treats, setTreats] = React.useState([]); //Set treats
   //const [selectedTreat, setSelectedTreat] = React.useState
 
-
-    const baseURL = 'http://localhost:4500' //URL used to pull data from backend
-    //TREATS
-    const [treats, setTreats] = React.useState([]) //Set treats
   
     const getTreats = () => {
       fetch(`${baseURL}/treats`)
@@ -63,17 +59,6 @@ function App() {
     }
   
 
-  const getDrinks = () => {
-    fetch(`${baseURL}/drinks`)
-      .then((response) => response.json())
-      .then((data) => {
-        setDrinks(data);
-      });
-  };
-  React.useEffect(() => {
-    getDrinks();
-  }, []);
-
   const handleCreate = (newDrink) => {
     fetch(`${baseURL}/drinks`, {
       method: "POST",
@@ -86,9 +71,6 @@ function App() {
     });
   };
 
-  const selectDrink = (drink) => {
-    setSelectedDrink(drink);
-  };
 
   return (
     <div>
@@ -134,7 +116,7 @@ function App() {
               <Form
                 {...rp}
                 label="create"
-                drink={emptyDrink}
+                drink={emptyItem}
                 handleSubmit={handleCreate}
               />
             )}
