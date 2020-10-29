@@ -4,10 +4,11 @@ import './App.css';
 import { Route, Link, Switch } from "react-router-dom"
 import Home from "./components/Home"
 import Nav from "./components/Nav"
-
+import Show from "./components/Show"
 import Favorites from "./components/Favorites"
 import DrinkIndex from "./components/DrinkIndex"
 import TreatsIndex from "./components/TreatsIndex"
+import Show from "./components/Show"
 
 
 function App() {
@@ -15,8 +16,7 @@ function App() {
     const baseURL = 'http://localhost:4500' //URL used to pull data from backend
     //TREATS
     const [treats, setTreats] = React.useState([]) //Set treats
-    //const [selectedTreat, setSelectedTreat] = React.useState 
-
+  
     const getTreats = () => {
       fetch(`${baseURL}/treats`)
         .then(response => response.json())
@@ -27,18 +27,9 @@ function App() {
     React.useEffect(() => {
       getTreats()
     }, [])
-    //DRINKS
+
+//DRINKS
     const [drinks, setDrinks] = React.useState([])
-
-    //Empty Drink Function
-    const emptyDrink = {
-      name: "",
-      img: "",
-      ingredients: [],
-      directions: ""
-    }
-
-    const [selectedDrink, setSelectedDrink] = React.useState(emptyDrink)
 
     const getDrinks = () => {
       fetch(`${baseURL}/drinks`)
@@ -51,8 +42,18 @@ function App() {
       getDrinks()
     }, [])
 
-    const selectDrink = (drink) => {
-      setSelectedDrink(drink)
+//Empty Function
+    const emptyItem = {
+      name: "",
+      img: "",
+      ingredients: [],
+      directions: ""
+    }
+
+    const [selectedItem, setSelectedItem] = React.useState(emptyItem)
+
+    const selectItem = (aItem) => {
+      setSelectedItem(aItem)
     }
   
 
@@ -73,9 +74,26 @@ function App() {
           {/* <Favorites /> */}
           {/* <TreatsIndex treats={treats} /> */}
           <Route exact path="/drinks" render={ (rp) =>
-            <DrinkIndex {...rp} drinks={drinks} selectDrink = {selectDrink} /> 
-          }
+            <DrinkIndex {...rp} drinks={drinks} selectItem = {selectItem} /> 
+            }
           />
+          <Route exact path="/treats" render={ (rp) =>
+            <TreatsIndex {...rp} treats={treats} selectItem = {selectItem} /> 
+            }
+          />
+          <Route exact path="/drinks/:id" render={ (rp)=>
+            <Show {...rp} item={selectedItem} />
+            } 
+          />
+
+          <Route exact path="/treats/:id" render={ (rp)=>
+            <Show {...rp} item={selectedItem} />
+            } 
+          />
+          {/* <Route exact path="/treats/:id" render={ (rp)=>
+            <Show {...rp} item={selectDrink} />
+            } 
+          /> */}
           {/* Treat Index */}
           {/* Movie Show - Caitlin */}
           {/* Drink Show - Josh */}
