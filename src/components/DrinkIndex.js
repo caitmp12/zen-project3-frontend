@@ -15,7 +15,7 @@ const DrinkIndex = (props) => {
             <div className="index-container">
                 {drinks.map((drink) => (
                     <div className="map" onClick={() => {
-                        props.selectDrink(drink)
+                        props.selectItem(drink)
                         props.history.push(`/drinks/${drink._id}`)}}>
                             <div className="each">
                                 <img src={drink.img} />
