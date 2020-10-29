@@ -98,7 +98,6 @@ function App() {
           {/* Movie Show - Caitlin */}
           {/* Drink Show - Josh */}
           {/* Treat Show */}
-          {/* New Drink Form */}
           {/* New Treat Form */}
           {/* Edit Drink Form */}
           {/* Edit Treat Form */}

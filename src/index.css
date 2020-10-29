@@ -16,7 +16,7 @@ code {
   font-size: 36px;
   margin: auto;
   padding: 0;
-  max-width: 450px;
+  max-width: 700px;
 }
 
 body {
@@ -31,6 +31,7 @@ h1 {
   padding: .75em 0;
 }
 
+/*** HOME ***/
 .home {
   text-align: center;
 }
@@ -53,6 +54,7 @@ h1 {
   margin: .5em;
 }
 
+/*** NAV ***/
 .nav {
   text-align: center;
   display: flex;
@@ -65,7 +67,7 @@ h1 {
   color: #000;
 }
 
-/* Nav elements */
+/*** FAVORITES ***/
 .favorites {
   margin: .5em
 }
@@ -82,9 +84,34 @@ h2 {
   display: flex;
 }
 
+/*** INDEX ***/
 img {
-  border: black solid 1px;
-  height: 50px;
-  width: 50px;
+  height: 2em;
+  margin: .5em .25em;
 }
 
+.index-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.map {
+  width: 25%;
+  /* height: 35vh; */
+}
+
+.index-container p {
+  font-size: .4em;
+  padding: 0 .75em;
+}
+
+.each {
+  text-align: center;
+  height: 25vh;
+}
+
+.filling-empty-space-childs {
+  width: 25%;
+  height:0;
+  flex-grow: 3;
+}
