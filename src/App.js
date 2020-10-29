@@ -28,7 +28,17 @@ function App() {
     }, [])
     //DRINKS
     const [drinks, setDrinks] = React.useState([])
-    //const [selectedDrink, setSelectedDrink] = React.useState
+
+    //Empty Drink Function
+    const emptyDrink = {
+      name: "",
+      img: "",
+      ingredients: [],
+      directions: ""
+    }
+
+    const [selectedDrink, setSelectedDrink] = React.useState(emptyDrink)
+
     const getDrinks = () => {
       fetch(`${baseURL}/drinks`)
         .then(response => response.json())
@@ -40,8 +50,12 @@ function App() {
       getDrinks()
     }, [])
 
-    console.log(drinks)
-    console.log(treats)
+    const selectDrink = (drink) => {
+      setSelectedDrink(drink)
+    }
+  
+
+
 
 
   return (
@@ -58,7 +72,7 @@ function App() {
           {/* <Favorites /> */}
           {/* <TreatsIndex treats={treats} /> */}
           <Route exact path="/drinks" render={ (rp) =>
-            <DrinkIndex {...rp} drinks={drinks} /> 
+            <DrinkIndex {...rp} drinks={drinks} selectDrink = {selectDrink} /> 
           }
           />
           {/* Treat Index */}
