@@ -20,7 +20,7 @@ const Show = (props) => {
 
           <button
             onClick={() => {
-              props.selectItem(item);
+              props.selectItem(item, type);
               props.history.push(`/edit/${type}s`);
             }}
           >
