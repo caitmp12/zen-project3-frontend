@@ -11,6 +11,7 @@ import DrinkIndex from "./components/DrinkIndex";
 import TreatsIndex from "./components/TreatsIndex";
 import Form from "./components/Form";
 import MoviesIndex from "./components/MoviesIndex";
+import ShowMovies from "./components/ShowMovie"
 ///Testing
 import Steven from "./components/stevenMovies";
 
@@ -46,18 +47,31 @@ function App() {
   }, []);
 
   //Movies
-  const [movies, setMovies] = React.useState([]);
+  const emptyMovie = {
+    title: "",
+    poster: "",
+    year: "",
+    rated: "",
+    plot: "",
+    imdbID: ""
+  }
+  const [movies, setMovies] = React.useState([])
 
   const getMovies = () => {
-    fetch(`${baseURL}/drinks`)
-      .then((response) => response.json())
-      .then((data) => {
-        setMovies(data);
-      });
-  };
+    fetch(`${baseURL}/movies`)
+      .then(response => response.json())
+      .then(data => {
+        setMovies(data)
+      })
+  }
   React.useEffect(() => {
-    getMovies();
-  }, []);
+    getMovies()
+  }, [])
+
+  const selectMovie = (movie) => {
+    setMovies(movie)
+  }
+
 
   //Empty Function
   const emptyItem = {
@@ -118,7 +132,7 @@ function App() {
   };
 
   const emptyRandom = {
-    //movie: {},
+    // movie: {},
     treat: {},
     drink: {},
   };
@@ -129,6 +143,7 @@ function App() {
 
   const selectRandomList = () => {
     setSelectedRandomList({
+      // movie: movies[Math.floor(Math.random() * movies.length)],
       treat: treats[Math.floor(Math.random() * treats.length)],
       drink: drinks[Math.floor(Math.random() * drinks.length)],
     });
@@ -173,7 +188,7 @@ console.log(drinks)
             exact
             path="/movies"
             render={(rp) => (
-              <MoviesIndex {...rp} movies={movies} selectItem={selectItem} />
+              <MoviesIndex {...rp} movies={movies} selectMovie={selectMovie} />
             )}
           />
 
