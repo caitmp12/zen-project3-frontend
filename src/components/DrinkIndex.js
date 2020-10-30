@@ -25,6 +25,7 @@ const DrinkIndex = (props) => {
                 ))}
                 <div className="filling-empty-space-childs"></div>
             </div>
+            <Link to={"/create/drinks"}>Brew Your Own</Link> 
         </div>
     )
 }

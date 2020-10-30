@@ -1,5 +1,5 @@
 import React from "react"
-import DrinkIndex from "./DrinkIndex"
+import { Route, Link, Switch } from "react-router-dom"
 
 const TreatsIndex = (props) => {
 
@@ -24,6 +24,7 @@ const TreatsIndex = (props) => {
                     ))}
                     <div className="filling-empty-space-childs"></div>
             </div>
+            <Link to={"/create/treats"}> Build Your Own</Link>
         </div>
     )
 }
