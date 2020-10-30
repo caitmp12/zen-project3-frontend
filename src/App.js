@@ -10,74 +10,68 @@ import Favorites from "./components/Favorites";
 import DrinkIndex from "./components/DrinkIndex";
 import TreatsIndex from "./components/TreatsIndex";
 import Form from "./components/Form";
-import MoviesIndex from "./components/MoviesIndex"
+import MoviesIndex from "./components/MoviesIndex";
 ///Testing
 import Steven from "./components/stevenMovies";
 
 function App() {
   const baseURL = "http://localhost:4500"; //URL used to pull data from backend
 
-
-
   //TREATS
   const [treats, setTreats] = React.useState([]); //Set treats
   //const [selectedTreat, setSelectedTreat] = React.useState
-    const getTreats = () => {
-      fetch(`${baseURL}/treats`)
-        .then(response => response.json())
-        .then(data => {
-          setTreats(data)
-        })
-    }
-    React.useEffect(() => {
-      getTreats()
-    }, [])
+  const getTreats = () => {
+    fetch(`${baseURL}/treats`)
+      .then((response) => response.json())
+      .then((data) => {
+        setTreats(data);
+      });
+  };
+  React.useEffect(() => {
+    getTreats();
+  }, []);
 
-//DRINKS
-    const [drinks, setDrinks] = React.useState([])
+  //DRINKS
+  const [drinks, setDrinks] = React.useState([]);
 
-    const getDrinks = () => {
-      fetch(`${baseURL}/drinks`)
-        .then(response => response.json())
-        .then(data => {
-          setDrinks(data)
-        })
-    }
-    React.useEffect(() => {
-      getDrinks()
-    }, [])   
-    
-//Movies
-    const [movies, setMovies] = React.useState([])
-    
-    const getMovies = () => {
-      fetch(`${baseURL}/drinks`)
-        .then(response => response.json())
-        .then(data => {
-          setMovies(data)
-        })
-    }
-    React.useEffect(() => {
-      getMovies()
-    }, [])
+  const getDrinks = () => {
+    fetch(`${baseURL}/drinks`)
+      .then((response) => response.json())
+      .then((data) => {
+        setDrinks(data);
+      });
+  };
+  React.useEffect(() => {
+    getDrinks();
+  }, []);
 
+  //Movies
+  const [movies, setMovies] = React.useState([]);
 
+  const getMovies = () => {
+    fetch(`${baseURL}/drinks`)
+      .then((response) => response.json())
+      .then((data) => {
+        setMovies(data);
+      });
+  };
+  React.useEffect(() => {
+    getMovies();
+  }, []);
 
+  //Empty Function
+  const emptyItem = {
+    name: "",
+    img: "",
+    ingredients: [],
+    directions: "",
+  };
 
-//Empty Function
-    const emptyItem = {
-      name: "",
-      img: "",
-      ingredients: [],
-      directions: ""
-    }
+  const [selectedItem, setSelectedItem] = React.useState(emptyItem);
 
-    const [selectedItem, setSelectedItem] = React.useState(emptyItem)
-
-    const selectItem = (aItem) => {
-      setSelectedItem(aItem)
-    }
-  
+  const selectItem = (aItem) => {
+    setSelectedItem(aItem);
+  };
 
   const handleCreate = (newItem, type) => {
     fetch(`${baseURL}/${type}s`, {
@@ -96,7 +90,7 @@ function App() {
   };
 
   const handleUpdate = (item, type) => {
-    fetch(`${baseURL}/${type}s/${type._id}`, {
+    fetch(`${baseURL}/${type}s/${item._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -174,15 +168,21 @@ function App() {
           />
           {/* <Favorites /> */}
           {/* <TreatsIndex treats={treats} /> */}
-  
-          <Route exact path="/movies" render={(rp) =>
-            <MoviesIndex {...rp} movies={movies} selectItem={selectItem} />
-          }
+
+          <Route
+            exact
+            path="/movies"
+            render={(rp) => (
+              <MoviesIndex {...rp} movies={movies} selectItem={selectItem} />
+            )}
           />
 
-          <Route exact path="/drinks" render={ (rp) =>
-            <DrinkIndex {...rp} drinks={drinks} selectItem = {selectItem} /> 
-            }
+          <Route
+            exact
+            path="/drinks"
+            render={(rp) => (
+              <DrinkIndex {...rp} drinks={drinks} selectItem={selectItem} />
+            )}
           />
           <Route
             exact
@@ -212,6 +212,7 @@ function App() {
               <Show
                 {...rp}
                 item={selectedItem}
+                selectItem={selectItem}
                 type="treat"
                 deleteItem={deleteItem}
               />
@@ -225,7 +226,6 @@ function App() {
           {/* Movie Show - Caitlin */}
           {/* Drink Show - Josh */}
           {/* Treat Show */}
-          {/* Form */}
           <Route
             exact
             path="/create/drinks"
@@ -265,10 +265,20 @@ function App() {
               />
             )}
           />
-          {/* New Drink Form */}
-          {/* New Treat Form */}
-          {/* Edit Drink Form */}
-          {/* Edit Treat Form */}
+          <Route
+            exact
+            path="/edit/treats"
+            render={(rp) => (
+              <Form
+                {...rp}
+                label="update"
+                item={selectedItem}
+                handleSubmit={handleUpdate}
+                type="treat"
+              />
+            )}
+          />
+
           <Route
             exact
             path="/movies/search"
