@@ -141,6 +141,7 @@ function App() {
   };
 
   //API MOVIE
+
   const [searchedMovies, setSearchedMovies] = React.useState([]);
 
   const getSearchMovies = (search, page) => {
@@ -151,9 +152,10 @@ function App() {
       });
   };
   React.useEffect(() => {
-    getTreats();
+    getSearchMovies('halloweentown', 1);
   }, []);
-
+console.log(searchedMovies.results)
+console.log(drinks)
   return (
     <div>
       <header>
@@ -272,7 +274,7 @@ function App() {
           <Route
             exact
             path="/movies/search"
-            render={(rp) => <Steven {...rp} searchedMovies={searchedMovies} />}
+            render={(rp) => <Steven {...rp} search="halloweentown" searchedMovies={searchedMovies} page={searchedMovies.page} getSearchMovies={getSearchMovies}/>}
           />
         </Switch>
       </main>
