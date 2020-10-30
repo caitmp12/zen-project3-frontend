@@ -10,57 +10,78 @@ import Favorites from "./components/Favorites";
 import DrinkIndex from "./components/DrinkIndex";
 import TreatsIndex from "./components/TreatsIndex";
 import Form from "./components/Form";
+import Movies from "./components/MoviesIndex"
 ///Testing
 import Steven from "./components/stevenMovies"
 
 
 function App() {
   const baseURL = "http://localhost:4500"; //URL used to pull data from backend
+
+
+
   //TREATS
   const [treats, setTreats] = React.useState([]); //Set treats
   //const [selectedTreat, setSelectedTreat] = React.useState
+    const getTreats = () => {
+      fetch(`${baseURL}/treats`)
+        .then(response => response.json())
+        .then(data => {
+          setTreats(data)
+        })
+    }
+    React.useEffect(() => {
+      getTreats()
+    }, [])
 
-  const getTreats = () => {
-    fetch(`${baseURL}/treats`)
-      .then((response) => response.json())
-      .then((data) => {
-        setTreats(data);
-      });
-  };
-  React.useEffect(() => {
-    getTreats();
-  }, []);
+//DRINKS
+    const [drinks, setDrinks] = React.useState([])
 
-  //DRINKS
-  const [drinks, setDrinks] = React.useState([]);
+    const getDrinks = () => {
+      fetch(`${baseURL}/drinks`)
+        .then(response => response.json())
+        .then(data => {
+          setDrinks(data)
+        })
+    }
+    React.useEffect(() => {
+      getDrinks()
+    }, [])   
+    
+//Movies
+    const [movies, setMovies] = React.useState([])
+    
+    const getMovies = () => {
+      fetch(`${baseURL}/drinks`)
+        .then(response => response.json())
+        .then(data => {
+          setMovies(data)
+        })
+    }
+    React.useEffect(() => {
+      getMovies()
+    }, [])
 
-  const getDrinks = () => {
-    fetch(`${baseURL}/drinks`)
-      .then((response) => response.json())
-      .then((data) => {
-        setDrinks(data);
-      });
-  };
-  React.useEffect(() => {
-    getDrinks();
-  }, []);
 
-  //Empty Function
-  const emptyItem = {
-    name: "",
-    img: "",
-    ingredients: [],
-    directions: "",
-  };
 
-  const [selectedItem, setSelectedItem] = React.useState(emptyItem);
 
-  const selectItem = (aItem) => {
-    setSelectedItem(aItem);
-  };
+//Empty Function
+    const emptyItem = {
+      name: "",
+      img: "",
+      ingredients: [],
+      directions: ""
+    }
 
-  const handleCreate = (newItem, type) => {
-    fetch(`${baseURL}/${type}s`, {
+    const [selectedItem, setSelectedItem] = React.useState(emptyItem)
+
+    const selectItem = (aItem) => {
+      setSelectedItem(aItem)
+    }
+  
+
+  const handleCreate = (newDrink) => {
+    fetch(`${baseURL}/drinks`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -133,13 +154,15 @@ function App() {
           <Route exact path="/" render={(rp) => <Home randomList = {selectedRandomList} selectRandomList = {selectRandomList}  selectItem = {selectItem} />} />
           {/* <Favorites /> */}
           {/* <TreatsIndex treats={treats} /> */}
+  
+          <Route exact path="/drinks" render={(rp) =>
+            <MoviesIndex {...rp} movies={movies} selectItem={selectItem} />
+          }
+          />
 
-          <Route
-            exact
-            path="/drinks"
-            render={(rp) => (
-              <DrinkIndex {...rp} drinks={drinks} selectItem={selectItem} />
-            )}
+          <Route exact path="/drinks" render={ (rp) =>
+            <DrinkIndex {...rp} drinks={drinks} selectItem = {selectItem} /> 
+            }
           />
           <Route
             exact
