@@ -175,7 +175,7 @@ function App() {
           {/* <Favorites /> */}
           {/* <TreatsIndex treats={treats} /> */}
   
-          <Route exact path="/drinks" render={(rp) =>
+          <Route exact path="/movies" render={(rp) =>
             <MoviesIndex {...rp} movies={movies} selectItem={selectItem} />
           }
           />
