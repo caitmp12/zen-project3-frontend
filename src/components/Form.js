@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"
 
 const Form = (props) => {
   const [formData, setFormData] = React.useState(props.item);
@@ -17,7 +18,7 @@ const Form = (props) => {
 
   return (
     <div className="form-container">
-      <h2>Create Your New {`${type}`}</h2>
+      <h2>Your {`${type}`}</h2>
       <form onSubmit={handleSubmit}>
         <div className="field-wrap">
           <label>Name:</label><input
@@ -58,7 +59,9 @@ const Form = (props) => {
           />
         </div>
         <input className="submit-button" type="submit" value={props.label.toUpperCase()} />
+        
       </form>
+      <Link to={`/${type}s/${formData._id}`}><button className="submit-button back">BACK</button></Link>
     </div>
   );
 };
