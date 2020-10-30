@@ -150,9 +150,7 @@ function App() {
 
   return (
     <div>
-      <header>
-        <h1>MERN Project</h1>
-      </header>
+      <h1>MERN Project</h1>
       <main>
         <Switch>
           <Route
