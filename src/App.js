@@ -11,8 +11,7 @@ import DrinkIndex from "./components/DrinkIndex";
 import TreatsIndex from "./components/TreatsIndex";
 import Form from "./components/Form";
 ///Testing
-import Steven from "./components/stevenMovies"
-
+import Steven from "./components/stevenMovies";
 
 function App() {
   const baseURL = "http://localhost:4500"; //URL used to pull data from backend
@@ -75,7 +74,6 @@ function App() {
     });
   };
 
-
   const handleUpdate = (item, type) => {
     fetch(`${baseURL}/${type}s/${type._id}`, {
       method: "PUT",
@@ -92,36 +90,48 @@ function App() {
     });
   };
 
+  const deleteItem = (item, type) => {
+    fetch(`${baseURL}/${type}s/${item._id}`, {
+      method: "DELETE",
+    }).then((response) => {
+      if (type === "drink") {
+        getDrinks();
+      } else {
+        getTreats();
+      }
+    });
+  };
 
   const emptyRandom = {
     //movie: {},
     treat: {},
     drink: {},
-  }
+  };
 
-  const [selectedRandomList, setSelectedRandomList] = React.useState(emptyRandom)
+  const [selectedRandomList, setSelectedRandomList] = React.useState(
+    emptyRandom
+  );
 
   const selectRandomList = () => {
-    setSelectedRandomList({treat: treats[Math.floor(Math.random() * treats.length)],
-                          drink: drinks[Math.floor(Math.random() * drinks.length)]
-    })
-  }
+    setSelectedRandomList({
+      treat: treats[Math.floor(Math.random() * treats.length)],
+      drink: drinks[Math.floor(Math.random() * drinks.length)],
+    });
+  };
 
-  //API MOVIE 
+  //API MOVIE
   const [searchedMovies, setSearchedMovies] = React.useState([]);
 
   const getSearchMovies = (search, page) => {
     fetch(`${baseURL}/movies/search/${page}/${search}`)
-      .then(response => response.json())
-      .then(data => {
-        setSearchedMovies(data)
-      })
-  }
+      .then((response) => response.json())
+      .then((data) => {
+        setSearchedMovies(data);
+      });
+  };
   React.useEffect(() => {
-    getTreats()
-  }, [])
-
-
+    getTreats();
+  }, []);
 
   return (
     <div>
@@ -130,7 +140,17 @@ function App() {
       </header>
       <main>
         <Switch>
-          <Route exact path="/" render={(rp) => <Home randomList = {selectedRandomList} selectRandomList = {selectRandomList}  selectItem = {selectItem} />} />
+          <Route
+            exact
+            path="/"
+            render={(rp) => (
+              <Home
+                randomList={selectedRandomList}
+                selectRandomList={selectRandomList}
+                selectItem={selectItem}
+              />
+            )}
+          />
           {/* <Favorites /> */}
           {/* <TreatsIndex treats={treats} /> */}
 
@@ -157,6 +177,7 @@ function App() {
                 item={selectedItem}
                 selectItem={selectItem}
                 type="drink"
+                deleteItem={deleteItem}
               />
             )}
           />
@@ -164,7 +185,14 @@ function App() {
           <Route
             exact
             path="/treats/:id"
-            render={(rp) => <Show {...rp} item={selectedItem} type="treat" />}
+            render={(rp) => (
+              <Show
+                {...rp}
+                item={selectedItem}
+                type="treat"
+                deleteItem={deleteItem}
+              />
+            )}
           />
           {/* <Route exact path="/treats/:id" render={ (rp)=>
             <Show {...rp} item={selectDrink} />
@@ -218,9 +246,10 @@ function App() {
           {/* New Treat Form */}
           {/* Edit Drink Form */}
           {/* Edit Treat Form */}
-          <Route exact path="/movies/search" render={ (rp)=>
-            <Steven {...rp} searchedMovies={searchedMovies} />
-            } 
+          <Route
+            exact
+            path="/movies/search"
+            render={(rp) => <Steven {...rp} searchedMovies={searchedMovies} />}
           />
         </Switch>
       </main>
