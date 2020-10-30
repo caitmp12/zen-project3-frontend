@@ -6,10 +6,8 @@ const TreatsIndex = (props) => {
     const { treats } = props
 
     return (
-        <div>
-            <header>
-                <h2>Treats</h2>
-            </header>
+        <div className="outer-container">
+            <h2>Treats</h2>
             <div className="index-container">
                 {treats.map((treat) => (
                     <div className="map" onClick={() => {

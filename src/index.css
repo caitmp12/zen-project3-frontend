@@ -89,8 +89,11 @@ h1 {
 }
 
 /*** INDEX ***/
-header {
-  text-align: center;
+.outer-container {
+  background-image: url("/src/images/spider-web.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left bottom;
   background-color: rgb(20, 110, 116);
 }
 
@@ -100,21 +103,13 @@ h2 {
   padding: .5em 0;
   text-align: center;
   text-shadow: 1px 1px 20px rgb(245, 250, 243);
-}
-
-img {
-  height: 2em;
-  margin: .5em .25em;
-}
-
-p {
-  font-family: sans-serif;
+  /* background-color: rgb(20, 110, 116); */
 }
 
 .index-container {
   display: flex;
   flex-wrap: wrap;
-  background-color: rgb(20, 110, 116);
+  /* background-color: rgb(20, 110, 116); */
   height: 700px;
 }
 
@@ -136,6 +131,15 @@ p {
   box-shadow: 4px 4px 10px black;
 }
 
+img {
+  height: 2em;
+  margin: .5em .25em;
+}
+
+p {
+  font-family: sans-serif;
+}
+
 .filling-empty-space-childs {
   width: 25%;
   height:0;
@@ -143,7 +147,7 @@ p {
 }
 
 footer {
-  background-color: rgb(20, 110, 116);
+  /* background-color: rgb(20, 110, 116); */
   text-align: right;
 }
 
@@ -162,13 +166,17 @@ footer button, .submit-button {
 
 /*** NEW FORM ***/
 .form-container {
+  padding: 1.5em;
   background-color: rgb(20, 110, 116);
   height: 700px;
-  padding: 1.5em;
+  background-image: url("/src/images/bats.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
 
 form {
-  background-color: rgb(116, 185, 186);
+  background-color: rgb(116, 185, 186, .65);
   box-shadow: 4px 4px 10px black;
   padding: .75em;
 }

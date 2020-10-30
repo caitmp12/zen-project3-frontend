@@ -6,10 +6,8 @@ const DrinkIndex = (props) => {
     const {drinks} = props
 
     return (
-        <div>
-            <header>
-                <h2>Drinks</h2>
-            </header>
+        <div className="outer-container">
+            <h2>Drinks</h2>
             <div className="index-container">
                 {drinks.map((drink) => (
                     <div className="map" onClick={() => {
