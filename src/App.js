@@ -11,6 +11,7 @@ import DrinkIndex from "./components/DrinkIndex";
 import TreatsIndex from "./components/TreatsIndex";
 import Form from "./components/Form";
 import MoviesIndex from "./components/MoviesIndex";
+import ShowMovies from "./components/ShowMovie"
 ///Testing
 import Steven from "./components/stevenMovies";
 
@@ -71,11 +72,6 @@ function App() {
     setMovies(movie)
   }
 
-  // const [selectedFilm, setSelectedFilm] = React.useState(emptyMovie);
-
-  // const selectFilm = (aFilm) => {
-  //   setSelectedFilm(aFilm);
-  // };
 
   //Empty Function
   const emptyItem = {
@@ -208,17 +204,6 @@ console.log(drinks)
             path="/treats"
             render={(rp) => (
               <TreatsIndex {...rp} treats={treats} selectItem={selectItem} />
-            )}
-          />
-          <Route
-            exact
-            path="/movies/:id"
-            render={(rp) => (
-              <Show
-                {...rp}
-                // movie={}
-                selectMovie={selectMovie}
-              />
             )}
           />
           <Route
