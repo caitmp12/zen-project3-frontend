@@ -7,8 +7,8 @@ const MoviesIndex = (props) => {
   return (
     <div>
       <h2>Movies</h2>
-      <label htmlFor="search"></label>
-      <input type="text"></input>
+      {/* <label htmlFor="search"></label>
+      <input type="text"></input> */}
       <div className="index-container">
         <div className="flex">
           {movies.map((movie) => (
@@ -16,7 +16,7 @@ const MoviesIndex = (props) => {
               <img src={movie.poster} />
               <p
                 onClick={() => {
-                  props.selectItem(movie)
+                  props.selectMovie(movie)
                   props.history.push(`/movies/${movie._id}`)
                 }}>{movie.title}</p>
                 <ul>
