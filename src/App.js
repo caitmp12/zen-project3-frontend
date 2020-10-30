@@ -1,19 +1,18 @@
 import React from "react";
 // import logo from './logo.svg';
 
-import './App.css';
-import { Route, Link, Switch } from "react-router-dom"
-import Home from "./components/Home"
-import Nav from "./components/Nav"
-import Show from "./components/Show"
-import Favorites from "./components/Favorites"
-import DrinkIndex from "./components/DrinkIndex"
-import TreatsIndex from "./components/TreatsIndex"
+import "./App.css";
+import { Route, Link, Switch } from "react-router-dom";
+import Home from "./components/Home";
+import Nav from "./components/Nav";
+import Show from "./components/Show";
+import Favorites from "./components/Favorites";
+import DrinkIndex from "./components/DrinkIndex";
+import TreatsIndex from "./components/TreatsIndex";
 import Form from "./components/Form";
 import Movies from "./components/MoviesIndex"
 ///Testing
 import Steven from "./components/stevenMovies"
-
 
 
 function App() {
@@ -24,7 +23,6 @@ function App() {
   //TREATS
   const [treats, setTreats] = React.useState([]); //Set treats
   //const [selectedTreat, setSelectedTreat] = React.useState
-  
     const getTreats = () => {
       fetch(`${baseURL}/treats`)
         .then(response => response.json())
@@ -66,32 +64,6 @@ function App() {
 
 
 
-  const emptyDrink = {
-    name: "",
-    img: "",
-    ingredients: [],
-    directions: ""
-  }
-
-  const [selectedDrink, setSelectedDrink] = React.useState(emptyDrink)
-
-  const getDrinks = () => {
-    fetch(`${baseURL}/drinks`)
-      .then(response => response.json())
-      .then(data => {
-        setDrinks(data)
-      })
-  }
-  React.useEffect(() => {
-    getDrinks()
-  }, [])
-
-  const selectDrink = (drink) => {
-    setSelectedDrink(drink)
-  }
-
-
-
 
 //Empty Function
     const emptyItem = {
@@ -114,13 +86,33 @@ function App() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newDrink),
+      body: JSON.stringify(newItem),
     }).then((response) => {
-      getDrinks();
+      if (type === "drink") {
+        getDrinks();
+      } else {
+        getTreats();
+      }
     });
   };
 
-  //RANDOMIZER
+
+  const handleUpdate = (item, type) => {
+    fetch(`${baseURL}/${type}s/${type._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(item),
+    }).then((response) => {
+      if (type === "drink") {
+        getDrinks();
+      } else {
+        getTreats();
+      }
+    });
+  };
+
 
   const emptyRandom = {
     //movie: {},
@@ -151,6 +143,7 @@ function App() {
   }, [])
 
 
+
   return (
     <div>
       <header>
@@ -161,7 +154,7 @@ function App() {
           <Route exact path="/" render={(rp) => <Home randomList = {selectedRandomList} selectRandomList = {selectRandomList}  selectItem = {selectItem} />} />
           {/* <Favorites /> */}
           {/* <TreatsIndex treats={treats} /> */}
-
+  
           <Route exact path="/drinks" render={(rp) =>
             <MoviesIndex {...rp} movies={movies} selectItem={selectItem} />
           }
@@ -171,18 +164,30 @@ function App() {
             <DrinkIndex {...rp} drinks={drinks} selectItem = {selectItem} /> 
             }
           />
-          <Route exact path="/treats" render={ (rp) =>
-            <TreatsIndex {...rp} treats={treats} selectItem = {selectItem} /> 
-            }
+          <Route
+            exact
+            path="/treats"
+            render={(rp) => (
+              <TreatsIndex {...rp} treats={treats} selectItem={selectItem} />
+            )}
           />
-          <Route exact path="/drinks/:id" render={ (rp)=>
-            <Show {...rp} item={selectedItem} />
-            } 
+          <Route
+            exact
+            path="/drinks/:id"
+            render={(rp) => (
+              <Show
+                {...rp}
+                item={selectedItem}
+                selectItem={selectItem}
+                type="drink"
+              />
+            )}
           />
 
-          <Route exact path="/treats/:id" render={ (rp)=>
-            <Show {...rp} item={selectedItem} />
-            } 
+          <Route
+            exact
+            path="/treats/:id"
+            render={(rp) => <Show {...rp} item={selectedItem} type="treat" />}
           />
           {/* <Route exact path="/treats/:id" render={ (rp)=>
             <Show {...rp} item={selectDrink} />
@@ -195,13 +200,40 @@ function App() {
           {/* Form */}
           <Route
             exact
-            path="/create"
+            path="/create/drinks"
             render={(rp) => (
               <Form
                 {...rp}
                 label="create"
-                drink={emptyItem}
+                item={emptyItem}
                 handleSubmit={handleCreate}
+                type="drink"
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/create/treats"
+            render={(rp) => (
+              <Form
+                {...rp}
+                label="create"
+                item={emptyItem}
+                handleSubmit={handleCreate}
+                type="treat"
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/edit/drinks"
+            render={(rp) => (
+              <Form
+                {...rp}
+                label="update"
+                item={selectedItem}
+                handleSubmit={handleUpdate}
+                type="drink"
               />
             )}
           />
