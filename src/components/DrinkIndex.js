@@ -1,17 +1,13 @@
 import React from "react"
-import { Route, Link, Switch } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const DrinkIndex = (props) => {
 
     const {drinks} = props
 
     return (
-        <div>
+        <div className="outer-container">
             <h2>Drinks</h2>
-            {/* search bar */}
-            <label htmlFor="search"></label>
-            <input type="text"></input>
-
             <div className="index-container">
                 {drinks.map((drink) => (
                     <div className="map" onClick={() => {
@@ -24,8 +20,10 @@ const DrinkIndex = (props) => {
                     </div> 
                 ))}
                 <div className="filling-empty-space-childs"></div>
-            </div>
-            <Link to={"/create/drinks"}>Brew Your Own</Link> 
+            </div> 
+            <footer>
+                <Link to={"/create/drinks"}><button>Brew Your Own</button></Link>
+            </footer>
         </div>
     )
 }
