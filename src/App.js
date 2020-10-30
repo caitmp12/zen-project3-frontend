@@ -10,7 +10,7 @@ import Favorites from "./components/Favorites";
 import DrinkIndex from "./components/DrinkIndex";
 import TreatsIndex from "./components/TreatsIndex";
 import Form from "./components/Form";
-import Movies from "./components/MoviesIndex"
+import MoviesIndex from "./components/MoviesIndex"
 ///Testing
 import Steven from "./components/stevenMovies"
 
@@ -80,8 +80,8 @@ function App() {
     }
   
 
-  const handleCreate = (newDrink) => {
-    fetch(`${baseURL}/drinks`, {
+  const handleCreate = (newItem, type) => {
+    fetch(`${baseURL}/${type}s`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
