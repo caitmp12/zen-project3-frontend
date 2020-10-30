@@ -17,7 +17,7 @@ const MoviesIndex = (props) => {
               <p
                 onClick={() => {
                   props.selectItem(movie)
-                  props.history.push(`/treats/${movie._id}`)
+                  props.history.push(`/movies/${movie._id}`)
                 }}>{movie.title}</p>
                 <ul>
                   <li>{movie.year}</li>
