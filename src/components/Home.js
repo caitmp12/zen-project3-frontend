@@ -10,7 +10,7 @@ const Home = (props) => {
                 Randomizer
           </button>
           <div className="results">
-              <a href="#">Movie</a>
+              <Link to={"/movies/search"}>Movie</Link>
               <Link to={`/drinks/${randomList.drink._id}`} onClick={() =>
                props.selectItem(randomList.drink) 
             }>{randomList.drink.name}</Link>
