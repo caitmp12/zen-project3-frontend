@@ -26,6 +26,14 @@ const Show = (props) => {
           >
             Edit
           </button>
+          <button
+            onClick={() => {
+              props.deleteItem(item, type);
+              props.history.push(`/${type}s`);
+            }}
+          >
+            Delete
+          </button>
           <p></p>
         </div>
       </div>
