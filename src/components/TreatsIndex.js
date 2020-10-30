@@ -1,4 +1,5 @@
 import React from "react"
+import DrinkIndex from "./DrinkIndex"
 
 const TreatsIndex = (props) => {
 
@@ -10,18 +11,18 @@ const TreatsIndex = (props) => {
             <label htmlFor="search"></label>
             <input type="text"></input>
             <div className="index-container">
-                <div className="flex">
                     {treats.map((treat) => (
-                        <>
-                            <img src={treat.img} />
-                            <p
-                                onClick={() => {
-                                    props.selectItem(treat)
-                                    props.history.push(`/treats/${treat._id}`)
-                                }}>{treat.name}</p>
-                        </>
+                        <div className="map" onClick={() => {
+                            props.selectItem(treat)
+                            props.history.push(`/treats/${treat._id}`)
+                        }}>
+                            <div className="each">
+                                <img src={treat.img} />
+                                <p>{treat.name}</p>
+                            </div>    
+                        </div>
                     ))}
-                </div>
+                    <div className="filling-empty-space-childs"></div>
             </div>
         </div>
     )
