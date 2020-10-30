@@ -27,6 +27,7 @@ const MoviesIndex = (props) => {
             </>
           ))}
         </div>
+        <div className="filling-empty-space-childs"></div>
       </div>
     </div>
   )

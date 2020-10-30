@@ -32,5 +32,3 @@ const DrinkIndex = (props) => {
 export default DrinkIndex
 
 
-//prop called match, props.match.params.id
-//onClick on the button, historypush
