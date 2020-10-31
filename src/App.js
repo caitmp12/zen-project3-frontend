@@ -136,7 +136,7 @@ function App() {
   };
 
   const emptyRandom = {
-    // movie: {},
+    movie: {},
     treat: {},
     drink: {},
   };
@@ -147,7 +147,7 @@ function App() {
 
   const selectRandomList = () => {
     setSelectedRandomList({
-      // movie: movies[Math.floor(Math.random() * movies.length)],
+      movie: movies[Math.floor(Math.random() * movies.length)],
       treat: treats[Math.floor(Math.random() * treats.length)],
       drink: drinks[Math.floor(Math.random() * drinks.length)],
     });
@@ -210,17 +210,17 @@ console.log(drinks)
               <TreatsIndex {...rp} treats={treats} selectItem={selectItem} />
             )}
           />
-          <Route
+          {/* <Route
             exact
             path="/movies/:id"
             render={(rp) => (
               <Show
                 {...rp}
-                // movie={}
+                movie={}
                 selectMovie={selectMovie}
               />
             )}
-          />
+          /> */}
           <Route
             exact
             path="/drinks/:id"
