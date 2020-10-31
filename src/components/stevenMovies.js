@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import pumpkin from "../images/pumpkin.png"
 
 const Steven = (props) => {
 
@@ -34,42 +35,47 @@ const Steven = (props) => {
         }
     },[])
 
+    const moviePoster = (movie) => {
+        return movie.poster_path !== null ?
+            <img src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`} />
+            : <img src={pumpkin} />
+    }
+    
   return (
-    <div>
-            <h2>Movies</h2>
-            {/* search bar */}
-            <form onSubmit={handleSubmit}>
-                <input
+    <div className="outer-container">
+        <h2>Movies</h2>
+        <form onSubmit={handleSubmit}>
+            <input
                 type="text"
                 search="search"
                 value={searchData}
                 onChange={handleChange}
                 placeholder="Search Movie"
-                />
-                <input type="submit" value={props.label} />
-            </form>
-              <div className="index-container">
-                  {searchedMovies.results && searchedMovies.results.map((movie) => (
-                    <div className="map">
-                            <div className="each">
-                                <img src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`} />
-                                <p>{movie.title}</p>
-                            </div>
-                    </div> 
-            
-                ))} 
-                <div className="filling-empty-space-childs"></div>
-                <p onClick = {() => {
-                    nextPage(page)
-                    getSearchMovies(searchData, thePage)
-                    
-                }}
-                ><ion-icon name="play-outline"></ion-icon></p>
-
-
-            </div>   
-
+                className="search"
+            />
+            <input type="submit" className="button"value={props.label} />
+        </form>
+        <div className="index-container">
+            {searchedMovies.results && searchedMovies.results.map((movie) => (
+                <div className="map">
+                    <div className="each">
+                        {moviePoster(movie)}
+                        <p>{movie.title}</p>
+                    </div>
+                </div> 
+            ))} 
+            <div className="filling-empty-space-childs"></div>
         </div>
+        <div className="arrow" onClick = {() => {
+            nextPage(page)
+            getSearchMovies(searchData, thePage)   
+            }}>
+            <div className="field-wrap">
+                <label>Next</label>
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+            </div>
+        </div> 
+    </div>
   )
 };
 
