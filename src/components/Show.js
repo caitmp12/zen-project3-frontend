@@ -22,7 +22,10 @@ const Show = (props) => {
             </div>
           </div>
           <div className="show-row">
-            <p className="show-p">{item.directions}</p>
+            <div className="show-col">
+              <h3>Directions</h3>
+              <p className="show-p">{item.directions}</p>
+            </div>
           </div>
           <div className="show-row edit-delete-buttons">
             <button className="edit-delete"
