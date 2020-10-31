@@ -44,6 +44,7 @@ const Steven = (props) => {
                 search="search"
                 value={searchData}
                 onChange={handleChange}
+                placeholder="Search Movie"
                 />
                 <input type="submit" value={props.label} />
             </form>
