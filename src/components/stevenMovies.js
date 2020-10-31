@@ -1,27 +1,21 @@
 import React, { useEffect } from "react";
 import pumpkin from "../images/pumpkin.png"
+import { Link } from "react-router-dom"
+
 
 const Steven = (props) => {
 
-    const {searchedMovies, getSearchMovies} = props
+    const {searchedMovies, getSearchMovies, forwardPage, pageNumber} = props
    
-    const page = {
-        number: 1
-    }
 
     const [searchData, setSearchData] = React.useState(props.search)
-    const [thePage, setPage] = React.useState(page)
+
 
    
     const handleSubmit = (event) => {
         event.preventDefault();
-        page.number = 1;
-        getSearchMovies(searchData, thePage.number)
-    }
 
-    const nextPage = (page) => {
-        page.number += 1;
-        setPage(page)
+        getSearchMovies(searchData, 1)
     }
 
     const handleChange = (event) => {
@@ -59,16 +53,22 @@ const Steven = (props) => {
             {searchedMovies.results && searchedMovies.results.map((movie) => (
                 <div className="map">
                     <div className="each">
-                        {moviePoster(movie)}
-                        <p>{movie.title}</p>
+                        <Link to={`/movies/${movie.title}`}
+                            onClick={() => 
+                        props.selectMovie({poster:`https://image.tmdb.org/t/p/w342/${movie.poster_path}` ,title: movie.title , rated: movie.vote_average , plot: movie.overview})}>
+                            {moviePoster(movie)}
+                            <p>{movie.title}</p>
+                        </Link>
+                
                     </div>
                 </div> 
             ))} 
             <div className="filling-empty-space-childs"></div>
         </div>
         <div className="arrow" onClick = {() => {
-            nextPage(page)
-            getSearchMovies(searchData, thePage)   
+            forwardPage()
+            console.log(pageNumber.count)
+            getSearchMovies(searchData, 2)   
             }}>
             <div className="field-wrap">
                 <label>Next</label>
