@@ -27,20 +27,20 @@ const Show = (props) => {
               <p className="show-p">{item.directions}</p>
             </div>
           </div>
-          <div className="show-row edit-delete-buttons">
-            <button className="edit-delete"
-              onClick={() => {
-                props.selectItem(item, type);
-                props.history.push(`/edit/${type}s`);
-              }}>Edit
-            </button>
-            <button className="edit-delete"
-              onClick={() => {
-                props.deleteItem(item, type);
-                props.history.push(`/${type}s`);
-              }}>Delete
-            </button>
-          </div>
+        </div>
+        <div>
+          <button className="edit"
+            onClick={() => {
+              props.selectItem(item, type);
+              props.history.push(`/edit/${type}s`);
+            }}>Edit
+          </button>
+          <button className="delete"
+            onClick={() => {
+              props.deleteItem(item, type);
+              props.history.push(`/${type}s`);
+            }}>Delete
+          </button>
         </div>
       </div>
     </div>

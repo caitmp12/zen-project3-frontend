@@ -27,7 +27,6 @@ const Home = (props) => {
                props.selectItem(randomList.treat) 
             }>{randomList.treat.name}</Link>
           </div>
-          <div className="filler"></div>
         </div>
     )
 }

@@ -70,7 +70,7 @@ const Steven = (props) => {
             nextPage(page)
             getSearchMovies(searchData, thePage)   
             }}>
-            <div className="field-wrap">
+            <div className="field-wrap ">
                 <label>Next</label>
                 <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
