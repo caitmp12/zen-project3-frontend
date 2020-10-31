@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import pumpkin from "../images/pumpkin.png"
 
 const Steven = (props) => {
 
@@ -34,6 +35,12 @@ const Steven = (props) => {
         }
     },[])
 
+    const moviePoster = (movie) => {
+        return movie.poster_path !== null ?
+            <img src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`} />
+            : <img src={pumpkin} />
+    }
+    
   return (
     <div className="outer-container">
         <h2>Movies</h2>
@@ -48,22 +55,26 @@ const Steven = (props) => {
             />
             <input type="submit" className="button"value={props.label} />
         </form>
-            <div className="index-container">
-                {searchedMovies.results && searchedMovies.results.map((movie) => (
+        <div className="index-container">
+            {searchedMovies.results && searchedMovies.results.map((movie) => (
                 <div className="map">
                     <div className="each">
-                        <img src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`} />
+                        {moviePoster(movie)}
                         <p>{movie.title}</p>
                     </div>
                 </div> 
             ))} 
             <div className="filling-empty-space-childs"></div>
-            <div onClick = {() => {
-                nextPage(page)
-                getSearchMovies(searchData, thePage)   
-                }}><ion-icon name="chevron-forward-outline"></ion-icon>
+        </div>
+        <div className="arrow" onClick = {() => {
+            nextPage(page)
+            getSearchMovies(searchData, thePage)   
+            }}>
+            <div className="field-wrap">
+                <label>Next</label>
+                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-        </div>   
+        </div> 
     </div>
   )
 };

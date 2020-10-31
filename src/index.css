@@ -199,6 +199,14 @@ footer button, .submit-button, .edit-delete {
   cursor: pointer;
 }
 
+.arrow {
+  text-align: right;
+}
+
+.arrow label {
+  flex-grow: 3;
+}
+
 /*** NEW/EDIT FORM ***/
 .form-container {
   padding: 1.5em;
