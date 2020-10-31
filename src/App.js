@@ -11,7 +11,7 @@ import DrinkIndex from "./components/DrinkIndex";
 import TreatsIndex from "./components/TreatsIndex";
 import Form from "./components/Form";
 import MoviesIndex from "./components/MoviesIndex";
-import ShowMovies from "./components/ShowMovie"
+import ShowMovie from "./components/ShowMovie"
 ///Testing
 import Steven from "./components/stevenMovies";
 
@@ -55,7 +55,7 @@ function App() {
     plot: "",
     imdbID: ""
   }
-  const [movies, setMovies] = React.useState([])
+  const [movies, setMovies] = React.useState(emptyMovie)
 
   const getMovies = () => {
     fetch(`${baseURL}/movies`)
@@ -71,6 +71,7 @@ function App() {
   const selectMovie = (movie) => {
     setMovies(movie)
   }
+
 
 
   //Empty Function
@@ -132,7 +133,7 @@ function App() {
   };
 
   const emptyRandom = {
-    // movie: {},
+    movie: {},
     treat: {},
     drink: {},
   };
@@ -143,7 +144,7 @@ function App() {
 
   const selectRandomList = () => {
     setSelectedRandomList({
-      // movie: movies[Math.floor(Math.random() * movies.length)],
+      movie: movies[Math.floor(Math.random() * movies.length)],
       treat: treats[Math.floor(Math.random() * treats.length)],
       drink: drinks[Math.floor(Math.random() * drinks.length)],
     });
@@ -166,7 +167,7 @@ console.log(searchedMovies.results)
 console.log(drinks)
   return (
     <div>
-      <h1>MERN Project</h1>
+      <h1>Halloween Picks</h1>
       <main>
         <Switch>
           <Route
@@ -177,11 +178,16 @@ console.log(drinks)
                 randomList={selectedRandomList}
                 selectRandomList={selectRandomList}
                 selectItem={selectItem}
+                selectMovie={selectMovie}
               />
             )}
           />
-          {/* <Favorites /> */}
-          {/* <TreatsIndex treats={treats} /> */}
+
+          <Route
+            exact
+            path="/movies/search"
+            render={(rp) => <Steven {...rp} search="" searchedMovies={searchedMovies} page={searchedMovies.page} getSearchMovies={getSearchMovies} />}
+          />
 
           <Route
             exact
@@ -205,6 +211,17 @@ console.log(drinks)
               <TreatsIndex {...rp} treats={treats} selectItem={selectItem} />
             )}
           />
+          <Route
+            exact
+            path="/movies/:id"
+            render={(rp) => (
+              <ShowMovie
+                {...rp}
+                movie={movies}
+                selectMovie={selectMovie}
+              />
+            )}
+          />          
           <Route
             exact
             path="/drinks/:id"
@@ -232,14 +249,6 @@ console.log(drinks)
               />
             )}
           />
-          {/* <Route exact path="/treats/:id" render={ (rp)=>
-            <Show {...rp} item={selectDrink} />
-            } 
-          /> */}
-          {/* Treat Index */}
-          {/* Movie Show - Caitlin */}
-          {/* Drink Show - Josh */}
-          {/* Treat Show */}
           <Route
             exact
             path="/create/drinks"
@@ -291,12 +300,6 @@ console.log(drinks)
                 type="treat"
               />
             )}
-          />
-
-          <Route
-            exact
-            path="/movies/search"
-            render={(rp) => <Steven {...rp} search="" searchedMovies={searchedMovies} page={searchedMovies.page} getSearchMovies={getSearchMovies}/>}
           />
         </Switch>
       </main>

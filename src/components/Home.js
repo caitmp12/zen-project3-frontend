@@ -7,10 +7,12 @@ const Home = (props) => {
         <div className="home">
           <button className="randomizer" onClick={() => 
             props.selectRandomList()}>
-                Randomizer
+                Click Me!
           </button>
           <div className="results">
-              <Link to={"/movies/search"}>movie</Link>
+              <Link to={`movies/${randomList.movie._id}`}
+                onClick={() => 
+                  props.selectMovie(randomList.movie)}>{randomList.movie.title}</Link>
               <Link to={`/drinks/${randomList.drink._id}`} onClick={() =>
                props.selectItem(randomList.drink) 
             }>{randomList.drink.name}</Link>
