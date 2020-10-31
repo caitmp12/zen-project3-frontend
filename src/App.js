@@ -161,7 +161,6 @@ function App() {
       });
   };
   React.useEffect(() => {
-    getSearchMovies('halloweentown', 1);
   }, []);
 console.log(searchedMovies.results)
 console.log(drinks)
@@ -297,7 +296,7 @@ console.log(drinks)
           <Route
             exact
             path="/movies/search"
-            render={(rp) => <Steven {...rp} search="halloweentown" searchedMovies={searchedMovies} page={searchedMovies.page} getSearchMovies={getSearchMovies}/>}
+            render={(rp) => <Steven {...rp} search="" searchedMovies={searchedMovies} page={searchedMovies.page} getSearchMovies={getSearchMovies}/>}
           />
         </Switch>
       </main>
