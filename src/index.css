@@ -25,7 +25,7 @@ h1 {
 /*** HOME ***/
 .home {
   text-align: center;
-  background-image: url("../src/images/Halloween-background-teal.jpg");
+  background-image: url("/src/images/Halloween-background-teal.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -147,11 +147,10 @@ p {
 }
 
 footer {
-  /* background-color: rgb(20, 110, 116); */
   text-align: right;
 }
 
-footer button, .submit-button {
+footer button, .submit-button, .edit-delete {
   background-color: rgb(245, 250, 243);
   border-radius: 50px;
   padding: .5em;
@@ -162,9 +161,10 @@ footer button, .submit-button {
   transition: 0.2s all;
   text-align: center;
   font-size: .5em;
+  cursor: pointer;
 }
 
-/*** NEW FORM ***/
+/*** NEW/EDIT FORM ***/
 .form-container {
   padding: 1.5em;
   background-color: rgb(20, 110, 116);
@@ -217,4 +217,64 @@ label {
 
 .back {
   margin-top: 1em;
+}
+
+/*** SHOW ***/
+.show-container {
+  padding: 1em;
+  background-color: rgb(158, 20, 31);
+  height: 700px;
+  background-image: url("/src/images/spider-web-opposite.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center right;
+}
+
+.show-flex {
+  background-color: rgb(204, 80, 90, .65);
+  box-shadow: 4px 4px 10px black;
+  padding: .25em;
+}
+
+.show-row {
+  display: flex;
+  margin-bottom: .5em;
+}
+
+.show-col {
+  padding-left: .5em;
+  flex-grow: 3;
+}
+
+.pic {
+  height: 7em;
+  margin: 0;
+}
+
+h3 {
+  font-family: sans-serif;
+  font-size: .75em;
+  border-bottom: 1px solid #000;
+}
+
+ul {
+  border-bottom: 1px solid #000;
+}
+
+li {
+  list-style: none;
+  font-size: .6em;
+}
+
+.show-p {
+  font-size: .5em;
+}
+
+.edit-delete {
+  width: 5em;
+  margin-top: 1em;
+}
+
+.edit-delete-buttons {
+  flex-direction: row-reverse;
 }
