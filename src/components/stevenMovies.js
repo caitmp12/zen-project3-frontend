@@ -2,30 +2,37 @@ import React, { useEffect } from "react";
 
 const Steven = (props) => {
 
-    const {searchedMovies, getSearchMovies, page} = props
+    const {searchedMovies, getSearchMovies} = props
    
-    
-    
-    const [searchData, setSearchData] = React.useState(props.search)
-    const [thePage, setPage] = React.useState(1)
+    const page = {
+        number: 1
+    }
 
+    const [searchData, setSearchData] = React.useState(props.search)
+    const [thePage, setPage] = React.useState(page)
+
+   
     const handleSubmit = (event) => {
         event.preventDefault();
-        getSearchMovies(searchData, 1)
+        page.number = 1;
+        getSearchMovies(searchData, thePage.number)
+    }
+
+    const nextPage = (page) => {
+        page.number += 1;
+        setPage(page)
     }
 
     const handleChange = (event) => {
         setSearchData(event.target.value)
     }
-    const setthePage = (pageNumber) => {
-        setPage(thePage)
-    }
+
     
-    // useEffect(() => {
-    //     return () => {
-    // setSearchData("")
-    //     }
-    // },[])
+    useEffect(() => {
+        return () => {
+    setSearchData("")
+        }
+    },[])
 
   return (
     <div>
@@ -44,7 +51,7 @@ const Steven = (props) => {
                   {searchedMovies.results && searchedMovies.results.map((movie) => (
                     <div className="map">
                             <div className="each">
-                                <img src={movie.poster_path} />
+                                <img src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`} />
                                 <p>{movie.title}</p>
                             </div>
                     </div> 
@@ -52,7 +59,7 @@ const Steven = (props) => {
                 ))} 
                 <div className="filling-empty-space-childs"></div>
                 <p onClick = {() => {
-                    setPage(2)
+                    nextPage(page)
                     getSearchMovies(searchData, thePage)
                     
                 }}
