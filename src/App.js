@@ -304,8 +304,8 @@ console.log(drinks)
             )}
           />
         </Switch>
-      </main>
-      <Nav />
+        <Nav />
+      </main> 
     </div>
   );
 }
