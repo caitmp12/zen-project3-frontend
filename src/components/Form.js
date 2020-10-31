@@ -59,7 +59,7 @@ const Form = (props) => {
           />
         </div>
         <input className="submit-button" type="submit" value={props.label.toUpperCase()} />
-        
+      
       </form>
       <Link to={`/${type}s/${formData._id}`}><button className="submit-button back">BACK</button></Link>
     </div>
