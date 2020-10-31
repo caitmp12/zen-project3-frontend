@@ -153,16 +153,30 @@ function App() {
   };
 
   //API MOVIE
+const pageNum = {
+  count: 1
+}
 
   const [searchedMovies, setSearchedMovies] = React.useState([]);
+  const [pageNumber, setPageNumber] = React.useState([pageNum])
 
+  const forwardPage = () => {
+    pageNum.count = pageNum.count + 1
+    setPageNumber(pageNum)
+    }
+  
   const getSearchMovies = (search, page) => {
     fetch(`${baseURL}/movies/search/${page}/${search}`)
       .then((response) => response.json())
       .then((data) => {
         setSearchedMovies(data);
+        setPageNumber(pageNum)
       });
   };
+
+
+
+
   React.useEffect(() => {
   }, []);
 console.log(searchedMovies.results)
@@ -189,7 +203,7 @@ console.log(drinks)
           <Route
             exact
             path="/movies/search"
-            render={(rp) => <Steven {...rp} search="" searchedMovies={searchedMovies} page={searchedMovies.page} getSearchMovies={getSearchMovies} />}
+            render={(rp) => <Steven {...rp} search="" searchedMovies={searchedMovies} pageNumber={pageNumber} setPageNumber={setPageNumber} getSearchMovies={getSearchMovies}  selectMovie={selectMovie} forwardPage={forwardPage} />}
           />
 
           <Route
@@ -304,8 +318,8 @@ console.log(drinks)
             )}
           />
         </Switch>
-      </main>
-      <Nav />
+        <Nav />
+      </main> 
     </div>
   );
 }

@@ -42,6 +42,8 @@ const Form = (props) => {
           <label>Ingredients:</label><input
             className="textarea-medium"
             type="textarea"
+            rows="5"
+            wrap="soft"
             name="ingredients"
             value={formData.ingredients}
             placeholder="Ingredients"
@@ -52,6 +54,8 @@ const Form = (props) => {
           <label>Directions:</label><input
             className="textarea-large"
             type="textarea"
+            rows="10"
+            wrap="soft"
             name="directions"
             value={formData.directions}
             placeholder="Directions"
@@ -59,7 +63,7 @@ const Form = (props) => {
           />
         </div>
         <input className="submit-button" type="submit" value={props.label.toUpperCase()} />
-        
+      
       </form>
       <Link to={`/${type}s/${formData._id}`}><button className="submit-button back">BACK</button></Link>
     </div>
