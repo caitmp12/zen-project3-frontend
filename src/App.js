@@ -16,7 +16,7 @@ import ShowMovie from "./components/ShowMovie"
 import Steven from "./components/stevenMovies";
 
 function App() {
-  const baseURL = "https://localhost:3000/"; //URL used to pull data from backend
+  const baseURL = "http://localhost:4500/"; //URL used to pull data from backend
 
   //TREATS
   const [treats, setTreats] = React.useState([]); //Set treats
