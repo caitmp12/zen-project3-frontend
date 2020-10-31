@@ -1,8 +1,15 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Link } from "react-router-dom"
 
 const Home = (props) => {
-    const {randomList} = props
+
+  const { setSelectedRandomList, randomList } = props
+   
+    useEffect(() => {
+      return () => {setSelectedRandomList({movie: {}, drink: {}, treat: {}})}
+    }, [])
+    console.log(randomList)
+
     return (
         <div className="home">
           <button className="randomizer" onClick={() => 

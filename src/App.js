@@ -55,7 +55,7 @@ function App() {
     plot: "",
     imdbID: ""
   }
-  const [movies, setMovies] = React.useState(emptyMovie)
+  const [movies, setMovies] = React.useState()
 
   const getMovies = () => {
     fetch(`${baseURL}/movies`)
@@ -68,8 +68,10 @@ function App() {
     getMovies()
   }, [])
 
+  const [selectedMovie, setSelectedMovie] = React.useState(emptyMovie)
+
   const selectMovie = (movie) => {
-    setMovies(movie)
+    setSelectedMovie(movie)
   }
 
 
@@ -179,6 +181,7 @@ console.log(drinks)
                 selectRandomList={selectRandomList}
                 selectItem={selectItem}
                 selectMovie={selectMovie}
+                setSelectedRandomList={setSelectedRandomList}
               />
             )}
           />
@@ -217,8 +220,7 @@ console.log(drinks)
             render={(rp) => (
               <ShowMovie
                 {...rp}
-                movie={movies}
-                selectMovie={selectMovie}
+                movie={selectedMovie}
               />
             )}
           />          
