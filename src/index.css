@@ -7,6 +7,10 @@
   max-width: 700px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   border: #000 solid 1px;
 }
@@ -69,6 +73,8 @@ h1 {
   display: flex;
   padding: .75em 0;
   background-color: rgb(34, 10, 56);
+  position: sticky;
+  bottom: 0;
 }
 
 .nav .md {
@@ -95,6 +101,7 @@ h1 {
   background-size: cover;
   background-position: left bottom;
   background-color: rgb(20, 110, 116);
+  overflow: hidden;
 }
 
 h2 {
@@ -103,7 +110,6 @@ h2 {
   padding: .5em 0;
   text-align: center;
   text-shadow: 1px 1px 20px rgb(245, 250, 243);
-  /* background-color: rgb(20, 110, 116); */
 }
 
 .outer-container form {
@@ -146,6 +152,7 @@ h2 {
   display: flex;
   flex-wrap: wrap;
   height: 700px;
+  overflow: hidden;
 }
 
 .map {
@@ -271,6 +278,7 @@ label {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center right;
+  overflow: hidden;
 }
 
 .show-flex {
